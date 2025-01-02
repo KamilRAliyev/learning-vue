@@ -70,6 +70,9 @@
         }
       },
       watch: {
+        // it is good for when you need a side effect on your codebase.
+        // Let's say when you need to make specific api call on specific state.
+        // watch for triggering actions, computed data for computing reactive data
         count(newValue){
             if (newValue > 1000){
               this.counterTitle = "oof, your number is big"
