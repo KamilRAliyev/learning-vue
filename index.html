@@ -14,6 +14,16 @@
       <ul>
         <li v-for="number in listOfNumbers">{{number}}</li>
       </ul>
+      <hr>
+      <p>Count: {{count}}</p>
+      <button v-on:click="incrementCount">
+        Increment Count
+      </button>
+      <hr>
+      <div>
+        <label for="incrementAmount">Increment by:</label>
+        <input type="number" id="incrementAmount" v-model="incrementAmount">
+      </div>
     </div>
   </body>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -26,7 +36,17 @@
       data() {
         return {
           message: "Hello, it works!",
-          listOfNumbers: [1,2,3,4,5]
+          listOfNumbers: [1,2,3,4,5],
+          count: 10,
+          incrementAmount: 19,
+        }
+      },
+      methods: {
+        incrementCount(){
+          this.count+=this.incrementAmount
+        },
+        changeIncrementAmount(event){
+          this.incrementAmount = event.target.value
         }
       }
     })
