@@ -1,42 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <h1>Hello everyone!</h1>
-    <div id="app">
-      <h2>{{displayTitle}}</h2>
-      <p v-if="message.length%2 ==0">Even: {{message}}</p>
-      <p v-else>Odd: {{message}}</p>
-      <ul>
-        <li v-for="number in listOfNumbers">{{number}}</li>
-      </ul>
-      <hr>
-      <p>Count: {{count}}</p>
-      <p>Increment Amount: {{incrementAmount}}</p>
-      <p>Optimized Increment Amount: {{optimizedIncrementAmount}}</p>
-      <button v-on:click="incrementCount">
-        Increment Count
-      </button>
-      <hr>
-      <div>
-        <label for="incrementAmount">Increment by:</label>
-        <input type="number" id="incrementAmount" v-model="incrementAmount">
-      </div>
-    </div>
-  </body>
-  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-  <script>
-    const {createApp} = Vue
-
-    
-
-    const app = createApp({
-      data() {
+<script>
+export default {
+  data() {
         return {
           message: "Hello, it works!",
           listOfNumbers: [1,2,3,4,5],
@@ -79,8 +43,26 @@
             }
         }
     }
-    })
-    app.mount('#app')
+}
+</script>
 
-  </script>
-</html>
+<template>
+  <h2>{{displayTitle}}</h2>
+      <p v-if="message.length%2 ==0">Even: {{message}}</p>
+      <p v-else>Odd: {{message}}</p>
+      <ul>
+        <li v-for="number in listOfNumbers">{{number}}</li>
+      </ul>
+      <hr>
+      <p>Count: {{count}}</p>
+      <p>Increment Amount: {{incrementAmount}}</p>
+      <p>Optimized Increment Amount: {{optimizedIncrementAmount}}</p>
+      <button v-on:click="incrementCount">
+        Increment Count
+      </button>
+      <hr>
+      <div>
+        <label for="incrementAmount">Increment by:</label>
+        <input type="number" id="incrementAmount" v-model="incrementAmount">
+      </div>
+</template>

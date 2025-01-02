@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Hello everyone!</h1>
+    <div id="app">
+      
+    </div>
+  </body>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const {createApp} = Vue
+
+    
+
+    const app = createApp({
+      data() {
+        return {
+          message: "Hello, it works!",
+          listOfNumbers: [1,2,3,4,5],
+          count: 10,
+          incrementAmount: 19,
+          counterTitle: "Cool number"
+        }
+      },
+      computed: {
+        // Compute date is performance optimized calculations on reactive data
+        // Vue nows when to run it.
+        displayTitle() {
+          if (this.count > 100){
+            return "Cool number - very long."
+          }
+          else{
+            return "Cool number"
+          }
+        },
+        optimizedIncrementAmount(){
+          return this.displayTitle.length * this.incrementAmount
+        }
+
+      },
+      methods: {
+        incrementCount(){
+          this.count+=this.optimizedIncrementAmount
+        },
+        changeIncrementAmount(event){
+          this.incrementAmount = event.target.value
+        }
+      },
+      watch: {
+        // it is good for when you need a side effect on your codebase.
+        // Let's say when you need to make specific api call on specific state.
+        // watch for triggering actions, computed data for computing reactive data
+        count(newValue){
+            if (newValue > 1000){
+              this.counterTitle = "oof, your number is big"
+            }
+        }
+    }
+    })
+    app.mount('#app')
+
+  </script>
+</html>
