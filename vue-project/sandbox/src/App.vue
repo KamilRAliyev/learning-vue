@@ -26,7 +26,9 @@ export default {
 
   },
   methods: {
-
+    changeName(newName) {
+      this.userData.name = "Charlie";
+    },
   },
 }
 </script>
@@ -40,5 +42,5 @@ export default {
   <hr>
   <counter-base />
   <hr>
-  <user-card :user="userData" />
+  <user-card :user="userData" @change-name="changeName" />
 </template>
