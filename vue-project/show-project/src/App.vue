@@ -1,9 +1,12 @@
 <!-- eslint-disable vue/block-lang -->
 <script>
 import BenderStatistics from "./components/BenderStatistics.vue"
+import CharacterCard from "./components/CharacterCard.vue";
+
 export default {
   components: {
     BenderStatistics,
+    CharacterCard
   },
   data: () => (
     {
@@ -32,9 +35,9 @@ export default {
     }
   ),
   methods: {
-    addToFavorite(char) {
-      if (!this.favoriteCharacters.includes(char)) {
-        this.favoriteCharacters.push(char)
+    addToFavorite(payload) {
+      if (!this.favoriteCharacters.includes(payload)) {
+        this.favoriteCharacters.push(payload)
       }
       else {
         console.log('WARNING: Char is already in our favorites')
@@ -53,9 +56,8 @@ export default {
 <template>
   <p v-if="characterList.length === 0">There is no Charachter</p>
   <ul v-else>
-    <li v-for="(char, id) in characterList" :key="`bender-${id}`">{{ char.name }} <button
-        @click="addToFavorite(char)">Add to
-        favorite</button>
+    <li v-for="(char, id) in characterList" :key="`bender-${id}`">
+      <CharacterCard :character="char" @favorite="addToFavorite" />
     </li>
   </ul>
   <hr>
