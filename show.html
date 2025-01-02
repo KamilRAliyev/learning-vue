@@ -10,8 +10,20 @@
 
         <p v-if="characterList.length === 0">There is no Charachter</p>
         <ul v-else>
-            <li v-for="char in characterList">{{char.name}}</li>
+            <li v-for="(char, id) in characterList">{{char.name}} <button @click="addToFavorite(char)">Add to favorite</button></li>
         </ul>
+        <hr>
+        <p>Hey Your favorite Charachters</p>
+        <ul>
+            <li v-for="char in favoriteCharacters">{{char.name}}</li>
+        </ul>
+        <hr>
+        <p>New Char adding form</p>
+        <pre>{{newCharachter}}</pre>
+
+        <label for="newCharName">New Charachter Name </label>
+        <input type="text" id="newCharName" v-model="newCharachter.name" @keyup.enter="addNewCharachter">
+
     </div>
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -23,9 +35,29 @@
                     {name: 'Kamil'},
                     {name: 'Limak'},
                     {name: 'Test'}
-                    ]
+                    ],
+                    favoriteCharacters: [],
+                    newCharachter: {
+                        name: '',
+                    }
                 }
-            )
+            ),
+            methods: {
+                addToFavorite(char) {
+                    if (!this.favoriteCharacters.includes(char)){
+                        this.favoriteCharacters.push(char)
+                    }
+                    else{
+                        console.log ('WARNING: Char is already in our favorites')
+                    }
+                },
+                addNewCharachter(){
+                    if (!this.favoriteCharacters.includes(this.newCharachter)){
+                        this.characterList.push(this.newCharachter);
+                        this.newCharachter = { name: "", }
+                    }
+                },   
+        },
         }).mount('#app')
 
     </script>  

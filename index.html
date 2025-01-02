@@ -9,6 +9,7 @@
   <body>
     <h1>Hello everyone!</h1>
     <div id="app">
+      <h2>{{displayTitle}}</h2>
       <p v-if="message.length%2 ==0">Even: {{message}}</p>
       <p v-else>Odd: {{message}}</p>
       <ul>
@@ -16,6 +17,8 @@
       </ul>
       <hr>
       <p>Count: {{count}}</p>
+      <p>Increment Amount: {{incrementAmount}}</p>
+      <p>Optimized Increment Amount: {{optimizedIncrementAmount}}</p>
       <button v-on:click="incrementCount">
         Increment Count
       </button>
@@ -39,16 +42,40 @@
           listOfNumbers: [1,2,3,4,5],
           count: 10,
           incrementAmount: 19,
+          counterTitle: "Cool number"
         }
+      },
+      computed: {
+        // Compute date is performance optimized calculations on reactive data
+        // Vue nows when to run it.
+        displayTitle() {
+          if (this.count > 100){
+            return "Cool number - very long."
+          }
+          else{
+            return "Cool number"
+          }
+        },
+        optimizedIncrementAmount(){
+          return this.displayTitle.length * this.incrementAmount
+        }
+
       },
       methods: {
         incrementCount(){
-          this.count+=this.incrementAmount
+          this.count+=this.optimizedIncrementAmount
         },
         changeIncrementAmount(event){
           this.incrementAmount = event.target.value
         }
-      }
+      },
+      watch: {
+        count(newValue){
+            if (newValue > 1000){
+              this.counterTitle = "oof, your number is big"
+            }
+        }
+    }
     })
     app.mount('#app')
 
