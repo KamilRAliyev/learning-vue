@@ -1,6 +1,10 @@
 <!-- eslint-disable vue/block-lang -->
 <script>
+import BenderStatistics from "./components/BenderStatistics.vue"
 export default {
+  components: {
+    BenderStatistics,
+  },
   data: () => (
     {
       characterList: [
@@ -27,34 +31,6 @@ export default {
       }
     }
   ),
-  computed: {
-    uniqueElements() {
-      return Array.from(
-        new Set(
-          this.characterList.flatMap(character => character.element)
-        )
-      );
-    },
-    statistics() {
-      const elementStatistics = this.uniqueElements.reduce((stats, element) => {
-        stats[element] = this.characterList.filter(character => character.element.includes(element)).length;
-        return stats;
-      }, {});
-
-      return elementStatistics
-    },
-    airList() {
-      return this.characterList.filter(char => char.element.includes('air')).length
-    },
-    fireList() {
-      return this.characterList.filter(char => char.element.includes('fire')).length
-    },
-
-    waterList() {
-      return this.characterList.filter(char => char.element.includes('water')).length
-    },
-
-  },
   methods: {
     addToFavorite(char) {
       if (!this.favoriteCharacters.includes(char)) {
@@ -94,10 +70,6 @@ export default {
   <label for="newCharName">New Charachter Name </label>
   <input type="text" id="newCharName" v-model="newCharachter.name" @keyup.enter="addNewCharachter">
   <hr>
-  <h2>Statistics</h2>
-  <ul>
-    <pre>{{ statistics }}</pre>
-  </ul>
+  <BenderStatistics :characters="characterList" />
 
-  {{ uniqueElements }}
 </template>
