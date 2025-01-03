@@ -1,26 +1,20 @@
+<!-- eslint-disable vue/block-lang -->
 <script>
-// https://pokeapi.co/api/v2/pokemon?limit=151
-export default {
-  created() {
-    this.fetchPokemon()
-  },
-  data: () => {
-    return {
-      pokedox: {},
-    }
-  },
-  methods: {
-    async fetchPokemon() {
-      this.pokedox = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151').then((response) => response.json());
-    },
-  },
+import Pokedex from './components/pokedex.vue';
 
+export default {
+  components: {
+    Pokedex,
+  }
 }
 </script>
 
 <template>
-  <h1>New App</h1>
-  <pre>{{ pokedox }}</pre>
+  <Suspense>
+    <Pokedex></Pokedex>
+
+    <template #fallback>Loading...</template>
+  </Suspense>
 </template>
 
 <style></style>
