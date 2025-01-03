@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/block-lang -->
 <script>
 export default {
   props: { //For sending things down from parent

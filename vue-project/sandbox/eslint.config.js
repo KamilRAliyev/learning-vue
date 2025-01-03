@@ -13,6 +13,18 @@ export default [
     ignores: ['**/dist/**', '**/dist-ssr/**', '**/coverage/**'],
   },
 
+  // Add your rule customization block here
+  {
+    name: 'app/vue-rule-customization',
+    files: ['**/*.vue'], // Target only Vue files
+    plugins: {
+      vue: pluginVue, // Add the Vue plugin
+    },
+    rules: {
+      'vue/block-lang': 'off', // Disable the vue/block-lang rule globally
+    },
+  },
+
   ...pluginVue.configs['flat/essential'],
   ...vueTsEslintConfig(),
   skipFormatting,
