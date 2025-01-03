@@ -36,8 +36,7 @@ export default {
       <a href="#" @click.prevent="showLoginPage">Login</a>
     </nav>
   </header>
-  <HomePage v-if="currentPage === 'Home'" />
-  <LoginPage v-else />
+  <component :is="renderPage" />
 </template>
 
 <style>
