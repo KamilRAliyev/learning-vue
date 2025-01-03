@@ -1,34 +1,26 @@
-<script>
-import { reactive } from "vue";
+<script setup>
+import { reactive, defineProps } from "vue";
 
-export default {
-  async setup() {
-    const users = await fetch(
-      "https://jsonplaceholder.typicode.com/users"
-    ).then((response) => response.json());
-
-    const state = reactive({
-      users2: users,
-    });
-
-    // console.log(state);
-    // console.log(state.users2);
-
-    return {
-      state,
-    }
+defineProps({
+  title: {
+    type: String,
+    default: "Default title - USERS",
   },
-  data: () => {
-    return {
-      users: {},
-    };
-  }
-};
+});
+
+const users = await fetch("https://jsonplaceholder.typicode.com/users").then(
+  (response) => response.json()
+);
+
+const state = reactive({
+  userList: users,
+});
 </script>
 
 <template>
+  <h2>{{ title }}</h2>
   <ul>
-    <li v-for="user in state.users2" :key="`user-${user.id}`">
+    <li v-for="user in state.userList" :key="`user-${user.id}`">
       {{ user.name }}: {{ user.website }}
     </li>
   </ul>
