@@ -1,6 +1,13 @@
 <!-- eslint-disable vue/block-lang -->
 <script>
+import { newCount } from '../composables/countStore'
+
 export default {
+  setup() {
+    return {
+      newCount
+    }
+  },
   data() {
     return {
       count: 10,
@@ -25,6 +32,7 @@ export default {
   methods: {
     incrementCount() {
       this.count += this.optimizedIncrementAmount
+      this.newCount += this.optimizedIncrementAmount
     },
     changeIncrementAmount(event) {
       this.incrementAmount = event.target.value
@@ -37,6 +45,7 @@ export default {
   <h2>{{ displayTitle }}</h2>
   <hr>
   <p>Count: {{ count }}</p>
+  <p>{{ newCount }}</p>
   <p>Increment Amount: {{ incrementAmount }}</p>
   <p>Optimized Increment Amount: {{ optimizedIncrementAmount }}</p>
   <button v-on:click="incrementCount">

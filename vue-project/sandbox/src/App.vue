@@ -1,20 +1,18 @@
 <!-- eslint-disable vue/block-lang -->
-<script>
-import Pokedex from './components/pokedex.vue';
+<script setup>
+import { reactive } from 'vue';
+import CounterBase from './components/CounterBase.vue';
+import UserCard from './components/userCard.vue';
 
-export default {
-  components: {
-    Pokedex,
-  }
-}
+const userr = reactive({
+  name: "Aliye",
+  favoriteFood: "kebab",
+})
 </script>
 
 <template>
-  <Suspense>
-    <Pokedex></Pokedex>
-
-    <template #fallback>Loading...</template>
-  </Suspense>
+  <CounterBase></CounterBase>
+  <h2>
+    <userCard :user="userr" />
+  </h2>
 </template>
-
-<style></style>
