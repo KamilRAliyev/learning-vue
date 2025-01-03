@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <!-- eslint-disable vue/block-lang -->
 <script setup>
-import { computed, ref, reactive, defineProps, defineEmits } from 'vue';
+import { computed, ref, reactive, defineProps, defineEmits, onBeforeUnmount } from 'vue';
 import BaseButton from './BaseButton.vue';
 // Reactive is, think of data{} option from options api, packed in a nice helper function
 // What if I want to call data state{}?
@@ -31,6 +31,9 @@ const props = defineProps(
 
 const elementTypeAllCaps = computed(() => { return state.elementType.toUpperCase() + props.region })
 
+onBeforeUnmount(() => {
+  console.log("Do it.")
+})
 </script>
 
 <template>
