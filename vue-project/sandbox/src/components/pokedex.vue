@@ -1,15 +1,21 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <!-- eslint-disable vue/block-lang -->
 <script>
-import { computed, ref } from 'vue';
+import { computed, ref, reactive } from 'vue';
+// Reactive is, think of data{} option from options api, packed in a nice helper function
+// What if I want to call data state{}?
 
 export default {
   async setup() {
     const regionName = ref('Keln');
-    const regionNameAllCaps = computed(() => { return regionName.value.toUpperCase() })
     const pokedox = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151').then((response) => response.json());
 
-    console.log(regionName)
+    const state = reactive({
+      elementType: 'lightning',
+    })
+
+    const regionNameAllCaps = computed(() => { return state.elementType.toUpperCase() })
+    console.log(state)
     return {
       pokedox, regionName, regionNameAllCaps
     }
