@@ -26,3 +26,13 @@ export default {
   <p>Favorite Food: {{ user.favoriteFood }} </p>
   <button @click="$emit('change-name')">Change Name</button>
 </template>
+
+
+<style scoped>
+/* Scoped css are looking for element unique attribute([data-v-b3321]) and change CSS by it
+They are not perferct though, cascade effect of CSS !important for example
+*/
+button {
+  border: 10px green solid;
+}
+</style>
