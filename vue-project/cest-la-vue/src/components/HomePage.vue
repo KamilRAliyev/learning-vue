@@ -1,4 +1,6 @@
-<script></script>
+<script setup>
+import { userList } from '../composables/useUserStore';
+</script>
 
 <template>
   <main>
@@ -7,6 +9,10 @@
       This is a place to manage various things: todos, users, posts, etc.
       Whatever your mind desires!
     </p>
+    <hr>
+    <ul>
+      <li v-for="user in userList">{{ user.name }}</li>
+    </ul>
   </main>
 </template>
 

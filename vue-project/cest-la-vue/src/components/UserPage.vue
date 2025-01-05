@@ -1,5 +1,6 @@
 <script setup>
-import { reactive, defineProps } from "vue";
+import { defineProps } from "vue";
+import {userList} from '../composables/useUserStore'
 
 defineProps({
   title: {
@@ -8,13 +9,9 @@ defineProps({
   },
 });
 
-const users = await fetch("https://jsonplaceholder.typicode.com/users").then(
+userList.value = await fetch("https://jsonplaceholder.typicode.com/users").then(
   (response) => response.json()
 );
-
-const state = reactive({
-  userList: users,
-});
 </script>
 
 <template>
