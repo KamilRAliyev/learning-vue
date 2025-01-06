@@ -24,15 +24,23 @@ export default {
   <p>{{ newCount }}</p>
   <h1>User: {{ user.name }} </h1>
   <p>Favorite Food: {{ user.favoriteFood }} </p>
-  <button @click="$emit('change-name')">Change Name</button>
+  <button :class="$style.button" @click="$emit('change-name')">Change Name</button>
 </template>
 
-
+<!--
 <style scoped>
 /* Scoped css are looking for element unique attribute([data-v-b3321]) and change CSS by it
 They are not perferct though, cascade effect of CSS !important for example
 */
 button {
+  border: 10px green solid;
+}
+</style> -->
+
+<style module>
+/* Css modules work extremely well when there is class associated with it */
+/* it adds unique class like in our case .button -> button_jdadsijaos2131 */
+.button {
   border: 10px green solid;
 }
 </style>
